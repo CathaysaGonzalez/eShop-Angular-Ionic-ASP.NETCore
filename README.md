@@ -3,7 +3,7 @@
     <div class="col-8">
         <p>
             Eshop is an ecommerce application for customers and administrators.
-            The front-end is developed in Angular and Ionic, and the back-end is developed in ASP.NET Core. The back-end includes unitary and integration tests.
+            The front-end is developed in *Angular 9* and *Ionic 5*, and the back-end is developed in *ASP.NET Core 3.0*. The back-end includes unitary and integration tests.
         </p>
       </div>
     <div class="col-4">
@@ -12,3 +12,12 @@
         </p>
   </div>
 </div>
+
+##Front-end
+To run the Ionic application: **ionic serve**
+To run the Angular application: **ng serve**
+#Back-end
+To migrate the data base:
+** dotnet ef database drop --force **
+** dotnet ef migrations add InitialCreate **
+** dotnet ef database update **
