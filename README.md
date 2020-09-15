@@ -1,10 +1,3 @@
-# eShop-Angular-Ionic-ASP.NETCore
-## Front-end
-### Customer mobile application
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/53798204/93254826-45b88900-f799-11ea-83b6-1bdf793f7e3f.png" width="500" title="hover text">
-</p>
-
-### Administrator mobile application
-### Administrator web application
-## Back-end
+# eShop
+Eshop is an ecommerce application for customers and administrators.
+The front-end is developed in Angular and Ionic, and the back-end is developed in ASP.NET Core. The back-end includes unitary and integration tests.
