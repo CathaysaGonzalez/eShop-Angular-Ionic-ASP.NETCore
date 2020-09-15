@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="8" size-lg="6" offset-sm="2" offset-lg="3">
+        <ion-list>
+          <ion-item *ngFor="let p of cart" class="ion-text-wrap">
+            <ion-grid>
+              <ion-row>
+                <ion-col class="ion-align-self-center">
+                  <ion-button color="tertiary" fill="clear" (click)="decreaseCartItem(p)">
+                    <ion-icon name="remove-circle"></ion-icon>
+                  </ion-button>
+                </ion-col>
+                <ion-col class="ion-align-self-center">
+                  {{ p.quantity }}
+                </ion-col>
+                <ion-col class="ion-align-self-center">
+                  <ion-button color="tertiary" fill="clear" (click)="increaseCartItem(p)">
+                    <ion-icon name="add-circle"></ion-icon>
+                  </ion-button>
+                </ion-col>
+                <ion-col offset="4" class="ion-align-self-center">
+                  <ion-button color="danger" fill="clear" (click)="removeCartItem(p)">
+                    <ion-icon name="trash"></ion-icon>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-item>
+                    <ion-label>{{ p.name }}</ion-label>
+                    <ion-note slot="end">
+                      <h5>{{ p.quantity * p.price | currency:'EUR'}}</h5>
+                    </ion-note>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="8" size-lg="6" offset-sm="2" offset-lg="3">
+        <ion-item color="secondary">
+          <ion-label class="label">Total</ion-label>
+          <ion-note slot="end">
+            <h4>{{getTotal()| currency:'EUR'}}</h4>
+          </ion-note>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="8" size-lg="6" offset-sm="2" offset-lg="3" text-center>
+        <ion-button expand="full" (click)="checkout()">
+          Checkout
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

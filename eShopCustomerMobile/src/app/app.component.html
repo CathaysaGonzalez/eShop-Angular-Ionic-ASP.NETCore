@@ -1,0 +1,64 @@
+<ion-app>
+  <ion-menu side="start">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>
+          eShop
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/auth">
+            <ion-icon name="enter-outline" slot="start"></ion-icon>
+            <ion-label>
+              Login
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/store/tabs/categories">
+            <ion-icon name="apps-outline" slot="start"></ion-icon>
+            <ion-label>
+              Catálogo
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/store/tabs/search">
+            <ion-icon name="search-outline" slot="start"></ion-icon>
+            <ion-label>
+              Buscar
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/store/tabs/cart" [disabled]="cartItemCount.value<=0">
+            <ion-icon name="cart-outline" slot="start"></ion-icon>
+            <ion-label>
+              Carrito
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/store/tabs/orders">
+            <ion-icon name="receipt-outline" slot="start"></ion-icon>
+            <ion-label>
+              Mis pedidos
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item lines="none" (click)="onLogout()">
+            <ion-icon name="exit-outline" slot="start"></ion-icon>
+            <ion-label>
+              Logout
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet main></ion-router-outlet>
+</ion-app>

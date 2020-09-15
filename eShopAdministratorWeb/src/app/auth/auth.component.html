@@ -1,0 +1,39 @@
+<div class="p-2 text-center text-white" style="background-color: #8e3187;">
+  <h3>Administrator</h3>
+</div>
+
+<div class="bg-danger mt-2 p-2 text-center text-white"
+*ngIf="errorMessage != null">
+{{errorMessage}}
+</div>
+
+<div class="row">
+  <div class="col-sm-6 col-xl-4 offset-sm-3 offset-xl-4">
+    <img src="../../assets/eshopv2.jpg" class="img-fluid card-img-top" alt="...">
+  </div>
+</div>
+
+<div class="row p-2">
+  <div class="col-sm-6 offset-sm-3">
+
+    <div>
+      <form class="form" [formGroup]="validationsForm">
+        <div class="form-group">
+          <label for="userName">User name</label>
+          <input class="form-control" name="userName" id="userName" formControlName="userName" id="userName" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input class="form-control" type="password" name="password" formControlName="password" id="password" required />
+        </div>
+        <div class="text-center">
+          <button type="submit" (click)="onSubmit(validationsForm)" expand="block" [disabled]="!validationsForm.valid"
+            class="btn m-1 text-white" style="background-color: #8e3187;">Log in</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+

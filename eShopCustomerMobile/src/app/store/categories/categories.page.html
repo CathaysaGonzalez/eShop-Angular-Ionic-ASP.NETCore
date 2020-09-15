@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Catalog</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button [disabled]="cartItemCount.value<=0" color="tertiary">
+      <div class="cart-length">{{ cartItemCount | async }}</div>
+      <ion-icon name="cart" class="cart-icon"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-grid *ngIf="isLoading">
+    <ion-row>
+      <ion-col size-sm="8" size-lg="6" offset-sm="2" offset-lg="3" text-center *ngIf="isLoading">
+
+        <ion-spinner color="primary"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="!isLoading && (!products || products.length <= 0)">
+    <ion-row>
+      <ion-col size-sm="8" size-lg="6" offset-sm="2" offset-lg="3" text-center>
+        <p>No products found!</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="8" size-lg="6" offset-sm="2" offset-lg="3" text-center>
+        <ion-list *ngFor="let category of categories; let i = index;" class="accordion-list">
+          <ion-item tappable (click)="onSetCategory(category)"
+            [ngClass]="{'section-active': toggleCategory[category.id], 'section': !toggleCategory[category.id]}"
+            color="secondary">
+            <ion-icon slot="start" name="arrow-forward" *ngIf="!toggleCategory[category.id]" color="primary"></ion-icon>
+            <ion-icon slot="start" name="arrow-down" *ngIf="toggleCategory[category.id]" color="primary"></ion-icon>
+            <ion-label color="dark">
+              {{category.name}}
+            </ion-label>
+          </ion-item>
+          <div *ngIf="productsByCategory && toggleCategory[category.id]">
+            <ion-list *ngFor="let product of toggleProduct[category.id]; let j = index;" line="none" class="child-list">
+              <ion-item-sliding #slidingProduct>
+                <ion-item [routerLink]="['/', 'store', 'tabs', 'products', product.id]">
+                  <ion-thumbnail slot="start">
+                    <ion-img [src]="product.productImageThumb" class="imageThumb"></ion-img>
+                  </ion-thumbnail>
+                  <ion-label>
+                    <h2>{{ product.name }}</h2>
+                  </ion-label>
+                  <ion-badge color="tertiary" slot="end">
+                    <p class="p">{{ product.price | currency:'EUR' }}</p>
+                  </ion-badge>
+                </ion-item>
+                <ion-item-options>
+                  <ion-item-option color="success" (click)="addToCart(product, slidingProduct)">
+                    <ion-icon name="basket-outline" slot="icon-only"></ion-icon>
+                  </ion-item-option>
+                </ion-item-options>
+              </ion-item-sliding>
+            </ion-list>
+          </div>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

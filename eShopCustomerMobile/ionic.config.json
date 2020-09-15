@@ -1,0 +1,8 @@
+{
+  "name": "eShopCustomer",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

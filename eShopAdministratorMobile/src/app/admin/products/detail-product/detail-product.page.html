@@ -1,0 +1,152 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin/tabs/products"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ isLoading ? 'Loading...' : product.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="isLoading" text-center>
+    <ion-spinner color="primary"></ion-spinner>
+  </div>
+
+  <ion-grid *ngIf="!isLoading">
+
+    <ion-row>
+      <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+        <ion-img [src]="product.productImageLarge"></ion-img>
+      </ion-col>
+    </ion-row>
+
+    <ion-list>
+
+      <ion-row>
+        <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+          <ion-list-header color="primary">
+            Product
+          </ion-list-header>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+          <ion-item>
+            <ion-label position="stacked" color="primary">Name</ion-label>
+            <p>{{product.name}}</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+          <ion-item>
+            <ion-label position="stacked" color="primary">Short Description</ion-label>
+            <p>{{product.description}}</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+          <ion-item>
+            <ion-label position="stacked" color="primary">Price</ion-label>
+            <p>{{product.price}}</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+          <ion-item>
+            <ion-label position="stacked" color="primary">Units in stock</ion-label>
+            <p>{{product.unitsInStock}}</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+          <ion-item>
+            <ion-label position="stacked" color="primary">Model number</ion-label>
+            <p>{{product.modelNumber}}</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+          <ion-item>
+            <ion-label position="stacked" color="primary">Model nameo</ion-label>
+            <p>{{product.modelName}}</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+          <ion-item>
+            <ion-label>Is featured</ion-label>
+            <ion-checkbox slot="end" color="primary" checked={{product.isFeatured}}></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+          <ion-list-header color="primary">
+            Supplier
+          </ion-list-header>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+          <ion-item>
+            <ion-label position="stacked" color="primary">Supplier name</ion-label>
+            <p>{{product.supplier.name}}</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+          <ion-item>
+            <ion-label position="stacked" color="primary">Supplier address</ion-label>
+            <p>{{product.supplier.address}}</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+          <ion-item>
+            <ion-label position="stacked" color="primary">Supplier city</ion-label>
+            <p>{{product.supplier.city}}</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+          <ion-list-header color="primary">
+            Category
+          </ion-list-header>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+          <ion-item>
+            <ion-label position="stacked" color="primary">Name</ion-label>
+            <p>{{product.categoryNavigation.name}}</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+    </ion-list>
+  </ion-grid>
+
+</ion-content>

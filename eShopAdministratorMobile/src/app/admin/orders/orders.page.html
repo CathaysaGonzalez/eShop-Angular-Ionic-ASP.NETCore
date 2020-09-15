@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Orders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="6" offset-md="3" text-center *ngIf="isLoading">
+        <ion-spinner color="primary"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="6" offset-md="3" *ngIf="!isLoading &&(!loadedOrders || loadedOrders.length <= 0)" text-center>
+        <p>No orders found!</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="6" offset-md="3" *ngIf="!isLoading && loadedOrders && loadedOrders.length > 0">
+        <ion-list *ngFor="let order of loadedOrders">
+
+          <ion-item [routerLink]="['/', 'admin', 'tabs', 'orders', order.id]">
+
+            <div class="order-details">
+              <ion-text color="primary">
+                <p>Order number: {{ order.id }}</p>
+              </ion-text>
+              <ion-label color="black">
+                <p *ngIf="order.shipped">State: Shipped</p>
+                <p *ngIf="!order.shipped">State: In preparation</p>
+              </ion-label>
+              <ion-label class="label">
+                <p>Total: {{ order.total | currency:'EUR' }}</p>
+              </ion-label>
+            </div>
+
+          </ion-item>
+
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/store/tabs/categories"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ isLoading ? 'Loading...': product.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div text-center *ngIf="isLoading">
+    <ion-spinner color="primary"></ion-spinner>
+  </div>
+
+  <ion-grid no-padding *ngIf="!isLoading">
+    <ion-row>
+      <ion-col size-sm="8" size-lg="6" offset-sm="2" offset-lg="3">
+        <ion-card>
+          <ion-img [src]="product.productImageLarge"></ion-img>
+          <ion-row>
+            <ion-col offset-xs="8">
+                <ion-badge color="tertiary">
+                <ion-label>
+                  <h2>{{ product.price | currency:'EUR' }}</h2>
+                </ion-label>
+              </ion-badge>
+            </ion-col>
+          </ion-row>
+          <ion-card-header>
+            <ion-card-title>{{ product.name }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            {{ product.description }}
+          </ion-card-content>
+          <ion-button type="submit" color="primary" expand="block" (click)="onAddToCart()" margin>
+            Buy
+          </ion-button>
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

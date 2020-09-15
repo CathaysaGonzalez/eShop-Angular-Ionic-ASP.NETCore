@@ -1,0 +1,29 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+
+    <ion-tab-button tab="categories">
+      <ion-label>Catalog</ion-label>
+      <ion-icon name="apps-outline"></ion-icon>
+    </ion-tab-button>    
+
+    <ion-tab-button tab="search">
+      <ion-label>Search</ion-label>
+      <ion-icon name="search-outline"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="cart" [disabled]="cartItemCount.value<=0">
+      <ion-label>Shopping cart</ion-label>
+      <ion-icon name="cart-outline"></ion-icon>
+      <ion-badge color="primary">{{cartItemCount | async}}</ion-badge>
+    </ion-tab-button>    
+
+    <ion-tab-button tab="orders">
+      <ion-label>Orders</ion-label>
+      <ion-icon name="receipt-outline"></ion-icon>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-tabs>
+
+
+

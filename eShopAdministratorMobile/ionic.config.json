@@ -1,0 +1,7 @@
+{
+  "name": "eShopAdministrator",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

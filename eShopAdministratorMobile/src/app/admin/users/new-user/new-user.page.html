@@ -1,0 +1,133 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="'/admin/tabs/users'"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Nuevo usuario</ion-title>
+
+    <ion-buttons slot="primary">
+      <ion-button (click)="onSubmit(form)"  [disabled]="!form.valid">
+        <ion-icon name="checkmark" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="form">
+    <ion-grid>
+
+      <ion-row>
+        <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+          <ion-item>
+            <ion-label position="floating">Nombre de usuario</ion-label>
+            <ion-input type="text" formControlName="userName"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row>
+        <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+          <div *ngFor="let validation of validationMessages.userName">
+            <div class="error-message"
+              *ngIf="form.get('userName').hasError(validation.type) && (form.get('userName').dirty || form.get('userName').touched)">
+              <p>{{ validation.message }}</p>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+
+
+      <div formGroupName="matchingPasswords">
+        <ion-row>
+          <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+            <ion-item>
+              <ion-label position="floating">Password</ion-label>
+              <ion-input formControlName="password"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+            <div *ngFor="let validation of validationMessages.password">
+              <div class="error-message"
+                *ngIf="form.get('matchingPasswords').get('password').hasError(validation.type) && (form.get('matchingPasswords').get('password').dirty || form.get('matchingPasswords').get('password').touched)">
+                <p>{{ validation.message }}</p>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+            <ion-item>
+              <ion-label position="floating">Confirmar password</ion-label>
+              <ion-input formControlName="confirmPassword"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row>
+          <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+            <div *ngFor="let validation of validationMessages.confirmPassword">
+              <div class="error-message"
+                *ngIf="form.get('matchingPasswords').get('confirmPassword').hasError(validation.type) && (form.get('matchingPasswords').get('confirmPassword').dirty || form.get('matchingPasswords').get('confirmPassword').touched)">
+                <p>{{ validation.message }}</p>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row>
+          <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+            <div *ngFor="let validation of validationMessages.matchingPasswords">
+              <div class="error-message"
+                *ngIf="form.get('matchingPasswords').hasError(validation.type) && (form.get('matchingPasswords').dirty || form.get('matchingPasswords').touched)">
+                <p>{{ validation.message }}</p>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+
+      </div>
+
+      <ion-row>
+        <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="text" formControlName="email"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row>
+        <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+          <div *ngFor="let validation of validationMessages.email">
+            <div class="error-message"
+              *ngIf="form.get('email').hasError(validation.type) && (form.get('email').dirty || form.get('email').touched)">
+              <p>{{ validation.message }}</p>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+          <ion-item>
+            <ion-label position="floating">Role</ion-label>
+            <ion-select formControlName="role">
+              <ion-select-option value="Admins">Administrador</ion-select-option>
+              <ion-select-option value="Users">Usuario</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </form>
+
+</ion-content>

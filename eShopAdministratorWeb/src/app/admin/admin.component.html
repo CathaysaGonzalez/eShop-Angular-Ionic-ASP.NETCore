@@ -1,0 +1,27 @@
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col" style="background-color: #8e3187;">
+      <a class="navbar-brand h1 text-white">eShop</a>
+    </div>
+  </div>
+
+
+<div class="row mt-2">
+
+  <div class="col-xs-12 col-md-3 offset-lg-1 col-xl-2">
+    <button class="btn btn-outline-info btn-block" routerLink="/admin/products" routerLinkActive="active">
+      Products
+    </button>
+    <button class="btn btn-outline-info btn-block" routerLink="/admin/orders" routerLinkActive="active">
+      Orders
+    </button>
+    <button class="btn btn-outline-danger btn-block" (click)="logout()">
+      Log out
+    </button>
+  </div>
+
+  <div class="col-xs-12 col-md-9 col-lg-7 col-xl-8">
+    <router-outlet></router-outlet>
+  </div>
+</div>

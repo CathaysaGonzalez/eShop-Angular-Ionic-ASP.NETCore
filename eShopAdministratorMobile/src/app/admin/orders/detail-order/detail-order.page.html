@@ -1,0 +1,118 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin/tabs/orders"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit order</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onUpdateOrder()" [disabled]="!form?.valid">
+        <ion-icon name="checkmark" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="isLoading" text-center>
+    <ion-spinner color="primary"></ion-spinner>
+  </div>
+
+  
+
+  <ion-grid *ngIf="!isLoading">
+    <form [formGroup]="form" *ngIf="!isLoading">
+      <ion-list>
+
+        <ion-row>
+          <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+            <ion-list-header color="primary">
+              Customer
+            </ion-list-header>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+            <ion-item>
+              <ion-label position="stacked" color="primary">Name</ion-label>
+              <p>{{orderTotal.name}}</p>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+            <ion-item>
+              <ion-label position="stacked" color="primary">Address</ion-label>
+              <p>{{orderTotal.address}}</p>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+
+            <ion-item>
+              <ion-label>Mark shipped</ion-label>
+              <ion-toggle slot="start" formControlName="shipped" color="primary" [(checked)]="orderTotal.shipped">
+              </ion-toggle>
+            </ion-item>
+
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+            <ion-list-header color="primary">
+              Order
+            </ion-list-header>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8">
+            <ion-list>
+              <ion-item *ngFor="let c of orderTotal.cartLines" class="ion-text-wrap">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="4">
+                      <p>{{ c.productNavigation.name }}</p>
+                    </ion-col>
+                    <ion-col size="4">
+                      <p>Quantity:{{ c.quantity }}</p>
+                    </ion-col>
+                    <ion-col size="4">
+                      <p>{{ c.quantity * c.productNavigation.price | currency:'EUR'}}</p>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <ion-item>
+                        <ion-label position="stacked" color="primary">Supplier</ion-label>
+                        <p>{{c.productNavigation.supplier.name}}</p>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8" color="secondary">
+            <ion-item color="secondary">
+              <ion-label class="label">Total</ion-label>
+              <ion-note slot="end">
+                <h5>{{getTotal()| currency:'EUR'}}</h5>
+              </ion-note>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+      </ion-list>
+    </form>
+  </ion-grid>
+
+</ion-content>

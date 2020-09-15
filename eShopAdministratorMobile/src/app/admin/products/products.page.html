@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Products</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button routerLink="/admin/tabs/products/new">
+        <ion-icon name="add" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid *ngIf="isLoading">
+    <ion-row>
+      <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8" text-center *ngIf="isLoading">
+        <ion-spinner color="primary"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="!isLoading && (!products || products.length <= 0)">
+    <ion-row>
+      <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8" text-center>
+        <p>No products found!</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8" text-center>
+        <ion-col size-sm="8" offset-lg="3" offset-sm="2" size-lg="6" offset-md="2" size-md="8" text-center>
+          <ion-list *ngFor="let category of categories; let i = index;">
+            <ion-item color="secondary">
+              <ion-label class="category">
+                {{category.name}}
+              </ion-label>
+            </ion-item>
+            <ion-list *ngFor="let product of this.productsForCategory[category.id]; let j = index;" line="none">
+
+              <ion-item-sliding #slidingProduct>
+
+                <ion-item [routerLink]="['/', 'admin', 'tabs', 'products', product.id]">
+                  <ion-thumbnail slot="start">
+                    <ion-img [src]="product.productImageThumb" class="imageThumb"></ion-img>
+                  </ion-thumbnail>
+                  <ion-label>
+                    <h2>{{ product.name }}</h2>
+                  </ion-label>
+                  <ion-badge color="secondary" slot="end">
+                    <p class="p">{{ product.price | currency:'EUR' }}</p>
+                  </ion-badge>
+                </ion-item>
+
+
+                <ion-item-options>
+                  <ion-item-option color="success">
+                    <ion-icon name="create-outline" slot="icon-only"
+                      (click)="onEditProduct(product.id, slidingProduct)">
+                    </ion-icon>
+                  </ion-item-option>
+
+                  <ion-item-option color="danger">
+                    <ion-icon name="trash-outline" slot="icon-only"
+                      (click)="onCancelProduct(product.id, slidingProduct)">
+                    </ion-icon>
+                  </ion-item-option>
+                </ion-item-options>
+
+
+              </ion-item-sliding>
+
+            </ion-list>
+          </ion-list>
+        </ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

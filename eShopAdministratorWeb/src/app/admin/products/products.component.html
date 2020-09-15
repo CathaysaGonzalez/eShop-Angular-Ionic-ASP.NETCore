@@ -1,0 +1,30 @@
+<table class="table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of products">
+      <td>{{p.id}}</td>
+      <td>{{p.name}}</td>
+      <td>{{p.categoryNavigation.name}}</td>
+      <td>{{p.price | currency:"EUR":"symbol":"2.2-2"}}</td>
+      <td>
+        <button class="btn btn-sm btn-warning m-1" [routerLink]="['/admin/products/edit', p.id]">
+          Edit
+        </button>
+        <button class="btn btn-sm btn-danger" (click)="onCancelProduct(p.id)">
+          Cancel
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn text-white" routerLink="/admin/products/new" style="background-color: #8e3187;">
+  Create new product
+</button>
